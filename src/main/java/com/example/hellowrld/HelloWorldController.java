@@ -1,7 +1,7 @@
 package com.example.hellowrld;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,9 +14,9 @@ public class HelloWorldController {
 
     @GetMapping("/time")
     public String time() {
-        Date dt_date = new Date();
-        SimpleDateFormat pattern = new SimpleDateFormat("YYYY/MM/DD HH:MM:SS");
-        String dt_string = pattern.format(dt_date);
-        return "現在日時：" + dt_string;
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dtformat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        String nowString = dtformat.format(now);
+        return "現在日時：" + nowString;
     }
 }
